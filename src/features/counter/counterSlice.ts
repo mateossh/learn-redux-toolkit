@@ -16,12 +16,18 @@ const counterSlice = createSlice({
       // in redux/toolkit we can mutate state in reducers
       state.value++
     },
+    decremented(state) {
+      state.value--
+    },
+    reseted(state) {
+      state.value = 0
+    },
     amountAdded(state, action: PayloadAction<number>) {
       state.value += action.payload;
     }
   }
 });
 
-export const { incremented, amountAdded } = counterSlice.actions;
+export const { incremented, decremented, reseted, amountAdded } = counterSlice.actions;
 
 export default counterSlice.reducer;

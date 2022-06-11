@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from './app/hooks'
-import { incremented, amountAdded } from './features/counter/counterSlice'
+import { incremented, decremented, reseted } from './features/counter/counterSlice'
 
 import logo from './logo.svg'
 import './App.css'
@@ -9,8 +9,16 @@ function App() {
   const count = useAppSelector(state => state.counter.value);
   const dispatch = useAppDispatch();
 
-  const handleClick = () => {
+  const handleIncrementClick = () => {
     dispatch(incremented());
+  }
+
+  const handleDecrementClick = () => {
+    dispatch(decremented());
+  }
+
+  const handleResetClick = () => {
+    dispatch(reseted());
   }
 
   return (
@@ -19,10 +27,13 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
-          <button type="button" onClick={handleClick}>
-            count is: {count}
-          </button>
+          count is: {count}
         </p>
+        <div>
+          <button type="button" onClick={handleDecrementClick}>-</button>
+          <button type="button" onClick={handleResetClick}>reset</button>
+          <button type="button" onClick={handleIncrementClick}>+</button>
+        </div>
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
         </p>
